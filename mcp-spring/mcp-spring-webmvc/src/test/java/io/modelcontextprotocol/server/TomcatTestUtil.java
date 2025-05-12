@@ -22,7 +22,25 @@ public class TomcatTestUtil {
 		// Prevent instantiation
 	}
 
-	public record TomcatServer(Tomcat tomcat, AnnotationConfigWebApplicationContext appContext) {
+	public static class TomcatServer {
+
+		Tomcat tomcat;
+
+		AnnotationConfigWebApplicationContext appContext;
+
+		public TomcatServer(Tomcat tomcat, AnnotationConfigWebApplicationContext appContext) {
+			this.tomcat = tomcat;
+			this.appContext = appContext;
+		}
+
+		public Tomcat tomcat() {
+			return this.tomcat;
+		}
+
+		public AnnotationConfigWebApplicationContext appContext() {
+			return this.appContext;
+		}
+
 	}
 
 	public static TomcatServer createTomcatServer(String contextPath, int port, Class<?> componentClass) {

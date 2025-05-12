@@ -50,23 +50,29 @@ class McpClientFeatures {
 
 	/**
 	 * Asynchronous client features specification providing the capabilities and request
-	 * and notification handlers.
-	 *
-	 * @param clientInfo the client implementation information.
-	 * @param clientCapabilities the client capabilities.
-	 * @param roots the roots.
-	 * @param toolsChangeConsumers the tools change consumers.
-	 * @param resourcesChangeConsumers the resources change consumers.
-	 * @param promptsChangeConsumers the prompts change consumers.
-	 * @param loggingConsumers the logging consumers.
-	 * @param samplingHandler the sampling handler.
+	 * and notification handlers. clientInfo the client implementation information.
+	 * clientCapabilities the client capabilities. roots the roots. toolsChangeConsumers
+	 * the tools change consumers. resourcesChangeConsumers the resources change
+	 * consumers. promptsChangeConsumers the prompts change consumers. loggingConsumers
+	 * the logging consumers. samplingHandler the sampling handler.
 	 */
-	record Async(McpSchema.Implementation clientInfo, McpSchema.ClientCapabilities clientCapabilities,
-			Map<String, McpSchema.Root> roots, List<Function<List<McpSchema.Tool>, Mono<Void>>> toolsChangeConsumers,
-			List<Function<List<McpSchema.Resource>, Mono<Void>>> resourcesChangeConsumers,
-			List<Function<List<McpSchema.Prompt>, Mono<Void>>> promptsChangeConsumers,
-			List<Function<McpSchema.LoggingMessageNotification, Mono<Void>>> loggingConsumers,
-			Function<McpSchema.CreateMessageRequest, Mono<McpSchema.CreateMessageResult>> samplingHandler) {
+	static class Async {
+
+		McpSchema.Implementation clientInfo;
+
+		McpSchema.ClientCapabilities clientCapabilities;
+
+		Map<String, McpSchema.Root> roots;
+
+		List<Function<List<McpSchema.Tool>, Mono<Void>>> toolsChangeConsumers;
+
+		List<Function<List<McpSchema.Resource>, Mono<Void>>> resourcesChangeConsumers;
+
+		List<Function<List<McpSchema.Prompt>, Mono<Void>>> promptsChangeConsumers;
+
+		List<Function<McpSchema.LoggingMessageNotification, Mono<Void>>> loggingConsumers;
+
+		Function<McpSchema.CreateMessageRequest, Mono<McpSchema.CreateMessageResult>> samplingHandler;
 
 		/**
 		 * Create an instance and validate the arguments.
@@ -99,6 +105,38 @@ class McpClientFeatures {
 			this.promptsChangeConsumers = promptsChangeConsumers != null ? promptsChangeConsumers : List.of();
 			this.loggingConsumers = loggingConsumers != null ? loggingConsumers : List.of();
 			this.samplingHandler = samplingHandler;
+		}
+
+		public McpSchema.Implementation clientInfo() {
+			return clientInfo;
+		}
+
+		public McpSchema.ClientCapabilities clientCapabilities() {
+			return clientCapabilities;
+		}
+
+		public Map<String, McpSchema.Root> roots() {
+			return roots;
+		}
+
+		public List<Function<List<McpSchema.Tool>, Mono<Void>>> toolsChangeConsumers() {
+			return toolsChangeConsumers;
+		}
+
+		public List<Function<List<McpSchema.Resource>, Mono<Void>>> resourcesChangeConsumers() {
+			return resourcesChangeConsumers;
+		}
+
+		public List<Function<List<McpSchema.Prompt>, Mono<Void>>> promptsChangeConsumers() {
+			return promptsChangeConsumers;
+		}
+
+		public List<Function<McpSchema.LoggingMessageNotification, Mono<Void>>> loggingConsumers() {
+			return loggingConsumers;
+		}
+
+		public Function<McpSchema.CreateMessageRequest, Mono<McpSchema.CreateMessageResult>> samplingHandler() {
+			return samplingHandler;
 		}
 
 		/**
@@ -142,27 +180,34 @@ class McpClientFeatures {
 					toolsChangeConsumers, resourcesChangeConsumers, promptsChangeConsumers, loggingConsumers,
 					samplingHandler);
 		}
+
 	}
 
 	/**
 	 * Synchronous client features specification providing the capabilities and request
-	 * and notification handlers.
-	 *
-	 * @param clientInfo the client implementation information.
-	 * @param clientCapabilities the client capabilities.
-	 * @param roots the roots.
-	 * @param toolsChangeConsumers the tools change consumers.
-	 * @param resourcesChangeConsumers the resources change consumers.
-	 * @param promptsChangeConsumers the prompts change consumers.
-	 * @param loggingConsumers the logging consumers.
-	 * @param samplingHandler the sampling handler.
+	 * and notification handlers. clientInfo the client implementation information.
+	 * clientCapabilities the client capabilities. roots the roots. toolsChangeConsumers
+	 * the tools change consumers. resourcesChangeConsumers the resources change
+	 * consumers. promptsChangeConsumers the prompts change consumers. loggingConsumers
+	 * the logging consumers. samplingHandler the sampling handler.
 	 */
-	public record Sync(McpSchema.Implementation clientInfo, McpSchema.ClientCapabilities clientCapabilities,
-			Map<String, McpSchema.Root> roots, List<Consumer<List<McpSchema.Tool>>> toolsChangeConsumers,
-			List<Consumer<List<McpSchema.Resource>>> resourcesChangeConsumers,
-			List<Consumer<List<McpSchema.Prompt>>> promptsChangeConsumers,
-			List<Consumer<McpSchema.LoggingMessageNotification>> loggingConsumers,
-			Function<McpSchema.CreateMessageRequest, McpSchema.CreateMessageResult> samplingHandler) {
+	public static class Sync {
+
+		McpSchema.Implementation clientInfo;
+
+		McpSchema.ClientCapabilities clientCapabilities;
+
+		Map<String, McpSchema.Root> roots;
+
+		List<Consumer<List<McpSchema.Tool>>> toolsChangeConsumers;
+
+		List<Consumer<List<McpSchema.Resource>>> resourcesChangeConsumers;
+
+		List<Consumer<List<McpSchema.Prompt>>> promptsChangeConsumers;
+
+		List<Consumer<McpSchema.LoggingMessageNotification>> loggingConsumers;
+
+		Function<McpSchema.CreateMessageRequest, McpSchema.CreateMessageResult> samplingHandler;
 
 		/**
 		 * Create an instance and validate the arguments.
@@ -196,6 +241,39 @@ class McpClientFeatures {
 			this.loggingConsumers = loggingConsumers != null ? loggingConsumers : List.of();
 			this.samplingHandler = samplingHandler;
 		}
+
+		public McpSchema.Implementation clientInfo() {
+			return clientInfo;
+		}
+
+		public McpSchema.ClientCapabilities clientCapabilities() {
+			return clientCapabilities;
+		}
+
+		public Map<String, McpSchema.Root> roots() {
+			return roots;
+		}
+
+		public List<Consumer<List<McpSchema.Tool>>> toolsChangeConsumers() {
+			return toolsChangeConsumers;
+		}
+
+		public List<Consumer<List<McpSchema.Resource>>> resourcesChangeConsumers() {
+			return resourcesChangeConsumers;
+		}
+
+		public List<Consumer<List<McpSchema.Prompt>>> promptsChangeConsumers() {
+			return promptsChangeConsumers;
+		}
+
+		public List<Consumer<McpSchema.LoggingMessageNotification>> loggingConsumers() {
+			return loggingConsumers;
+		}
+
+		public Function<McpSchema.CreateMessageRequest, McpSchema.CreateMessageResult> samplingHandler() {
+			return samplingHandler;
+		}
+
 	}
 
 }

@@ -60,13 +60,36 @@ public class FlowSseClient {
 	private static final Pattern EVENT_TYPE_PATTERN = Pattern.compile("^event:(.+)$", Pattern.MULTILINE);
 
 	/**
-	 * Record class representing a Server-Sent Event with its standard fields.
-	 *
-	 * @param id the event ID (may be null)
-	 * @param type the event type (defaults to "message" if not specified in the stream)
-	 * @param data the event payload data
+	 * Record class representing a Server-Sent Event with its standard fields. id the
+	 * event ID (may be null) type the event type (defaults to "message" if not specified
+	 * in the stream) data the event payload data
 	 */
-	public static record SseEvent(String id, String type, String data) {
+	public static class SseEvent {
+
+		String id;
+
+		String type;
+
+		String data;
+
+		public SseEvent(String id, String type, String data) {
+			this.id = id;
+			this.type = type;
+			this.data = data;
+		}
+
+		public String id() {
+			return id;
+		}
+
+		public String type() {
+			return type;
+		}
+
+		public String data() {
+			return data;
+		}
+
 	}
 
 	/**

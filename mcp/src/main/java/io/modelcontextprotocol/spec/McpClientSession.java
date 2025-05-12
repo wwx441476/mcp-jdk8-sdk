@@ -180,7 +180,32 @@ public class McpClientSession implements McpSession {
 		});
 	}
 
-	record MethodNotFoundError(String method, String message, Object data) {
+	static class MethodNotFoundError {
+
+		String method;
+
+		String message;
+
+		Object data;
+
+		public MethodNotFoundError(String method, String message, Object data) {
+			this.method = method;
+			this.message = message;
+			this.data = data;
+		}
+
+		public String method() {
+			return method;
+		}
+
+		public String message() {
+			return message;
+		}
+
+		public Object data() {
+			return data;
+		}
+
 	}
 
 	private MethodNotFoundError getMethodNotFoundError(String method) {
