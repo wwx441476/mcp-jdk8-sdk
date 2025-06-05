@@ -5,6 +5,7 @@
 package io.modelcontextprotocol.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,6 @@ public class DefaultMcpUriTemplateManager implements McpUriTemplateManager {
 
 	/**
 	 * Extract URI variable names from a URI template.
-	 * @param uriTemplate The URI template containing variables in the format
 	 * {variableName}
 	 * @return A list of variable names extracted from the template
 	 * @throws IllegalArgumentException if duplicate variable names are found
@@ -49,7 +49,7 @@ public class DefaultMcpUriTemplateManager implements McpUriTemplateManager {
 	@Override
 	public List<String> getVariableNames() {
 		if (uriTemplate == null || uriTemplate.isEmpty()) {
-			return List.of();
+			return Collections.emptyList();
 		}
 
 		List<String> variables = new ArrayList<>();

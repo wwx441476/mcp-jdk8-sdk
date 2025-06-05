@@ -11,6 +11,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Flow;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -154,7 +155,7 @@ public class FlowSseClient {
 		AtomicReference<String> currentEventId = new AtomicReference<>();
 		AtomicReference<String> currentEventType = new AtomicReference<>("message");
 
-		Flow.Subscriber<String> lineSubscriber = new Flow.Subscriber<>() {
+		Flow.Subscriber<String> lineSubscriber = new Flow.Subscriber<String>() {
 			private Flow.Subscription subscription;
 
 			@Override
@@ -176,19 +177,19 @@ public class FlowSseClient {
 				}
 				else {
 					if (line.startsWith("data:")) {
-						var matcher = EVENT_DATA_PATTERN.matcher(line);
+						Matcher matcher = EVENT_DATA_PATTERN.matcher(line);
 						if (matcher.find()) {
 							eventBuilder.append(matcher.group(1).trim()).append("\n");
 						}
 					}
 					else if (line.startsWith("id:")) {
-						var matcher = EVENT_ID_PATTERN.matcher(line);
+						Matcher matcher = EVENT_ID_PATTERN.matcher(line);
 						if (matcher.find()) {
 							currentEventId.set(matcher.group(1).trim());
 						}
 					}
 					else if (line.startsWith("event:")) {
-						var matcher = EVENT_TYPE_PATTERN.matcher(line);
+						Matcher matcher = EVENT_TYPE_PATTERN.matcher(line);
 						if (matcher.find()) {
 							currentEventType.set(matcher.group(1).trim());
 						}

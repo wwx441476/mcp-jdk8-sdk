@@ -108,7 +108,7 @@ public class HttpClientSseClientTransport implements McpClientTransport {
 	 * @deprecated Use {@link HttpClientSseClientTransport#builder(String)} instead. This
 	 * constructor will be removed in future versions.
 	 */
-	@Deprecated(forRemoval = true)
+	@Deprecated
 	public HttpClientSseClientTransport(String baseUri) {
 		this(HttpClient.newBuilder(), baseUri, new ObjectMapper());
 	}
@@ -122,7 +122,7 @@ public class HttpClientSseClientTransport implements McpClientTransport {
 	 * @deprecated Use {@link HttpClientSseClientTransport#builder(String)} instead. This
 	 * constructor will be removed in future versions.
 	 */
-	@Deprecated(forRemoval = true)
+	@Deprecated
 	public HttpClientSseClientTransport(HttpClient.Builder clientBuilder, String baseUri, ObjectMapper objectMapper) {
 		this(clientBuilder, baseUri, DEFAULT_SSE_ENDPOINT, objectMapper);
 	}
@@ -137,7 +137,7 @@ public class HttpClientSseClientTransport implements McpClientTransport {
 	 * @deprecated Use {@link HttpClientSseClientTransport#builder(String)} instead. This
 	 * constructor will be removed in future versions.
 	 */
-	@Deprecated(forRemoval = true)
+	@Deprecated
 	public HttpClientSseClientTransport(HttpClient.Builder clientBuilder, String baseUri, String sseEndpoint,
 			ObjectMapper objectMapper) {
 		this(clientBuilder, HttpRequest.newBuilder(), baseUri, sseEndpoint, objectMapper);
@@ -155,7 +155,7 @@ public class HttpClientSseClientTransport implements McpClientTransport {
 	 * @deprecated Use {@link HttpClientSseClientTransport#builder(String)} instead. This
 	 * constructor will be removed in future versions.
 	 */
-	@Deprecated(forRemoval = true)
+	@Deprecated
 	public HttpClientSseClientTransport(HttpClient.Builder clientBuilder, HttpRequest.Builder requestBuilder,
 			String baseUri, String sseEndpoint, ObjectMapper objectMapper) {
 		this(clientBuilder.connectTimeout(Duration.ofSeconds(10)).build(), requestBuilder, baseUri, sseEndpoint,
@@ -229,7 +229,7 @@ public class HttpClientSseClientTransport implements McpClientTransport {
 		 * This constructor is deprecated and will be removed or made {@code protected} or
 		 * {@code private} in a future release.
 		 */
-		@Deprecated(forRemoval = true)
+		@Deprecated
 		public Builder(String baseUri) {
 			Assert.hasText(baseUri, "baseUri must not be empty");
 			this.baseUri = baseUri;

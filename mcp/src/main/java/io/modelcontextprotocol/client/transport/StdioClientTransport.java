@@ -7,10 +7,12 @@ package io.modelcontextprotocol.client.transport;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -305,7 +307,7 @@ public class StdioClientTransport implements McpClientTransport {
 						// embedded newlines.
 						jsonMessage = jsonMessage.replace("\r\n", "\\n").replace("\n", "\\n").replace("\r", "\\n");
 
-						var os = this.process.getOutputStream();
+						OutputStream os = this.process.getOutputStream();
 						synchronized (os) {
 							os.write(jsonMessage.getBytes(StandardCharsets.UTF_8));
 							os.write("\n".getBytes(StandardCharsets.UTF_8));
@@ -356,16 +358,26 @@ public class StdioClientTransport implements McpClientTransport {
 			logger.debug("Sending TERM to process");
 			if (this.process != null) {
 				this.process.destroy();
-				return Mono.fromFuture(process.onExit());
+
+				return Mono.fromFuture(() -> {
+					int[] re = new int[1];
+					new Thread(() -> {
+
+						try {
+							re[0] = process.waitFor();
+						} catch (InterruptedException e) {
+							Thread.currentThread().interrupt();
+						}
+					}).start();
+					return CompletableFuture.completedFuture(re[0]);
+				});
 			}
 			else {
 				logger.warn("Process not started");
 				return Mono.empty();
 			}
 		})).doOnNext(process -> {
-			if (process.exitValue() != 0) {
-				logger.warn("Process terminated with code " + process.exitValue());
-			}
+
 		}).then(Mono.fromRunnable(() -> {
 			try {
 				// The Threads are blocked on readLine so disposeGracefully would not

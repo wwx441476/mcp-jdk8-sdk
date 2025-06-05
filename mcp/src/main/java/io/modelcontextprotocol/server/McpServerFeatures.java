@@ -5,6 +5,7 @@
 package io.modelcontextprotocol.server;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,12 +89,12 @@ public class McpServerFeatures {
 									? new McpSchema.ServerCapabilities.ResourceCapabilities(false, false) : null,
 							!Utils.isEmpty(tools) ? new McpSchema.ServerCapabilities.ToolCapabilities(false) : null);
 
-			this.tools = (tools != null) ? tools : List.of();
-			this.resources = (resources != null) ? resources : Map.of();
-			this.resourceTemplates = (resourceTemplates != null) ? resourceTemplates : List.of();
-			this.prompts = (prompts != null) ? prompts : Map.of();
-			this.completions = (completions != null) ? completions : Map.of();
-			this.rootsChangeConsumers = (rootsChangeConsumers != null) ? rootsChangeConsumers : List.of();
+			this.tools = (tools != null) ? tools : Collections.emptyList();
+			this.resources = (resources != null) ? resources : Collections.emptyMap();
+			this.resourceTemplates = (resourceTemplates != null) ? resourceTemplates : Collections.emptyList();
+			this.prompts = (prompts != null) ? prompts : Collections.emptyMap();
+			this.completions = (completions != null) ? completions : Collections.emptyMap();
+			this.rootsChangeConsumers = (rootsChangeConsumers != null) ? rootsChangeConsumers : Collections.emptyList();
 			this.instructions = instructions;
 		}
 
@@ -143,7 +144,7 @@ public class McpServerFeatures {
 		 */
 		static Async fromSync(Sync syncSpec) {
 			List<McpServerFeatures.AsyncToolSpecification> tools = new ArrayList<>();
-			for (var tool : syncSpec.tools()) {
+			for (McpServerFeatures.SyncToolSpecification tool : syncSpec.tools()) {
 				tools.add(AsyncToolSpecification.fromSync(tool));
 			}
 
@@ -164,7 +165,7 @@ public class McpServerFeatures {
 
 			List<BiFunction<McpAsyncServerExchange, List<McpSchema.Root>, Mono<Void>>> rootChangeConsumers = new ArrayList<>();
 
-			for (var rootChangeConsumer : syncSpec.rootsChangeConsumers()) {
+			for (BiConsumer<McpSyncServerExchange, List<McpSchema.Root>> rootChangeConsumer : syncSpec.rootsChangeConsumers()) {
 				rootChangeConsumers.add((exchange, list) -> Mono
 					.<Void>fromRunnable(() -> rootChangeConsumer.accept(new McpSyncServerExchange(exchange), list))
 					.subscribeOn(Schedulers.boundedElastic()));

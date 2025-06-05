@@ -6,6 +6,7 @@ package io.modelcontextprotocol.spec;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -137,7 +138,7 @@ public final class McpSchema {
 
 	}
 
-	private static final TypeReference<HashMap<String, Object>> MAP_TYPE_REF = new TypeReference<>() {
+	private static final TypeReference<HashMap<String, Object>> MAP_TYPE_REF = new TypeReference<HashMap<String,Object>>() {
 	};
 
 	/**
@@ -155,7 +156,7 @@ public final class McpSchema {
 
 		logger.debug("Received JSON message: {}", jsonText);
 
-		var map = objectMapper.readValue(jsonText, MAP_TYPE_REF);
+		Map<String, Object> map = objectMapper.readValue(jsonText, MAP_TYPE_REF);
 
 		// Determine message type based on specific JSON structure
 		if (map.containsKey("method") && map.containsKey("id")) {
@@ -1598,7 +1599,7 @@ public final class McpSchema {
 		 * execution.
 		 */
 		public CallToolResult(String content, Boolean isError) {
-			this(List.of(new TextContent(content)), isError);
+			this(Collections.singletonList(new TextContent(content)), isError);
 		}
 
 		/**
