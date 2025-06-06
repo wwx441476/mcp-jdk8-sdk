@@ -197,6 +197,9 @@ public final class McpSchema {
 		@JsonProperty("params")
 		Object params;
 
+		public JSONRPCRequest() {
+
+		}
 		public JSONRPCRequest(String jsonrpc, String method, Object id, Object params) {
 			this.jsonrpc = jsonrpc;
 			this.method = method;
@@ -261,6 +264,9 @@ public final class McpSchema {
 		@JsonProperty("params")
 		Object params;
 
+		public JSONRPCNotification() {
+
+		}
 		public JSONRPCNotification(String jsonrpc, String method, Object params) {
 			this.jsonrpc = jsonrpc;
 			this.method = method;
@@ -297,7 +303,10 @@ public final class McpSchema {
 
 		@JsonProperty("error")
 		JSONRPCError error;
+        public JSONRPCResponse(){
 
+
+		}
 		public JSONRPCResponse(String jsonrpc, Object id, Object result, JSONRPCError error) {
 			this.jsonrpc = jsonrpc;
 			this.id = id;
@@ -334,7 +343,9 @@ public final class McpSchema {
 
 			@JsonProperty("data")
 			Object data;
+            public JSONRPCError() {
 
+			}
 			public JSONRPCError(int code, String message, Object data) {
 				this.code = code;
 				this.message = message;
@@ -372,7 +383,9 @@ public final class McpSchema {
 
 		@JsonProperty("clientInfo")
 		Implementation clientInfo;
+        public InitializeRequest() {
 
+		}
 		public InitializeRequest(String protocolVersion, ClientCapabilities capabilities, Implementation clientInfo) {
 			this.protocolVersion = protocolVersion;
 			this.capabilities = capabilities;
@@ -409,6 +422,9 @@ public final class McpSchema {
 		@JsonProperty("instructions")
 		String instructions;
 
+		public InitializeResult() {
+
+		}
 		public InitializeResult(String protocolVersion, ServerCapabilities capabilities, Implementation serverInfo,
 				String instructions) {
 			this.protocolVersion = protocolVersion;
@@ -458,6 +474,9 @@ public final class McpSchema {
 		@JsonProperty("sampling")
 		Sampling sampling;
 
+		public ClientCapabilities() {
+
+		}
 		public ClientCapabilities(Map<String, Object> experimental, RootCapabilities roots, Sampling sampling) {
 			this.experimental = experimental;
 			this.roots = roots;
@@ -489,7 +508,9 @@ public final class McpSchema {
 
 			@JsonProperty("listChanged")
 			Boolean listChanged;
+            public RootCapabilities() {
 
+			}
 			public RootCapabilities(Boolean listChanged) {
 				this.listChanged = listChanged;
 			}
@@ -573,6 +594,9 @@ public final class McpSchema {
 		@JsonProperty("tools")
 		ToolCapabilities tools;
 
+		public ServerCapabilities() {
+
+		}
 		public ServerCapabilities(CompletionCapabilities completions, Map<String, Object> experimental,
 				LoggingCapabilities logging, PromptCapabilities prompts, ResourceCapabilities resources,
 				ToolCapabilities tools) {
@@ -746,6 +770,9 @@ public final class McpSchema {
 		@JsonProperty("version")
 		String version;
 
+		public Implementation() {
+
+		}
 		public Implementation(String name, String version) {
 			this.name = name;
 			this.version = version;
@@ -804,6 +831,9 @@ public final class McpSchema {
 		@JsonProperty("priority")
 		Double priority;
 
+		public Annotations() {
+
+		}
 		public Annotations(List<Role> audience, Double priority) {
 			this.audience = audience;
 			this.priority = priority;
@@ -847,6 +877,9 @@ public final class McpSchema {
 		@JsonProperty("annotations")
 		Annotations annotations;
 
+		public Resource() {
+
+		}
 		public Resource(String uri, String name, String description, String mimeType, Annotations annotations) {
 			this.uri = uri;
 			this.name = name;
@@ -909,6 +942,9 @@ public final class McpSchema {
 		@JsonProperty("annotations")
 		Annotations annotations;
 
+		public ResourceTemplate() {
+
+		}
 		public ResourceTemplate(String uriTemplate, String name, String description, String mimeType,
 				Annotations annotations) {
 			this.uriTemplate = uriTemplate;
@@ -951,6 +987,9 @@ public final class McpSchema {
 		@JsonProperty("nextCursor")
 		String nextCursor;
 
+		public ListResourcesResult() {
+
+		}
 		public ListResourcesResult(List<Resource> resources, String nextCursor) {
 			this.resources = resources;
 			this.nextCursor = nextCursor;
@@ -976,6 +1015,9 @@ public final class McpSchema {
 		@JsonProperty("nextCursor")
 		String nextCursor;
 
+		public ListResourceTemplatesResult() {
+
+		}
 		public ListResourceTemplatesResult(List<ResourceTemplate> resourceTemplates, String nextCursor) {
 			this.resourceTemplates = resourceTemplates;
 			this.nextCursor = nextCursor;
@@ -998,6 +1040,9 @@ public final class McpSchema {
 		@JsonProperty("uri")
 		String uri;
 
+		public ReadResourceRequest() {
+
+		}
 		public ReadResourceRequest(String uri) {
 			this.uri = uri;
 		}
@@ -1015,6 +1060,9 @@ public final class McpSchema {
 		@JsonProperty("contents")
 		List<ResourceContents> contents;
 
+		public ReadResourceResult() {
+
+		}
 		public ReadResourceResult(List<ResourceContents> contents) {
 			this.contents = contents;
 		}
@@ -1040,6 +1088,9 @@ public final class McpSchema {
 		public SubscribeRequest(String uri) {
 			this.uri = uri;
 		}
+		public SubscribeRequest() {
+
+		}
 
 		public String uri() {
 			return uri;
@@ -1056,6 +1107,9 @@ public final class McpSchema {
 
 		public UnsubscribeRequest(String uri) {
 			this.uri = uri;
+		}
+		public UnsubscribeRequest() {
+
 		}
 
 		public String uri() {
@@ -1109,6 +1163,9 @@ public final class McpSchema {
 			this.mimeType = mimeType;
 			this.text = text;
 		}
+		public TextResourceContents() {
+
+		}
 
 		@Override
 		public String uri() {
@@ -1149,6 +1206,9 @@ public final class McpSchema {
 			this.uri = uri;
 			this.mimeType = mimeType;
 			this.blob = blob;
+		}
+		public BlobResourceContents() {
+
 		}
 
 		@Override
@@ -1194,6 +1254,9 @@ public final class McpSchema {
 			this.description = description;
 			this.arguments = arguments;
 		}
+		public Prompt() {
+
+		}
 
 		public String name() {
 			return name;
@@ -1232,6 +1295,9 @@ public final class McpSchema {
 			this.description = description;
 			this.required = required;
 		}
+		public PromptArgument() {
+
+		}
 
 		public String name() {
 			return name;
@@ -1267,6 +1333,9 @@ public final class McpSchema {
 			this.role = role;
 			this.content = content;
 		}
+		public PromptMessage() {
+
+		}
 
 		public Role role() {
 			return role;
@@ -1297,6 +1366,9 @@ public final class McpSchema {
 			this.prompts = prompts;
 			this.nextCursor = nextCursor;
 		}
+		public ListPromptsResult() {
+
+		}
 
 		public List<Prompt> prompts() {
 			return prompts;
@@ -1325,6 +1397,9 @@ public final class McpSchema {
 		public GetPromptRequest(String name, Map<String, Object> arguments) {
 			this.name = name;
 			this.arguments = arguments;
+		}
+		public GetPromptRequest() {
+
 		}
 
 		public String name() {
@@ -1355,6 +1430,9 @@ public final class McpSchema {
 		public GetPromptResult(String description, List<PromptMessage> messages) {
 			this.description = description;
 			this.messages = messages;
+		}
+		public GetPromptResult() {
+
 		}
 
 		public String description() {
@@ -1390,6 +1468,9 @@ public final class McpSchema {
 			this.tools = tools;
 			this.nextCursor = nextCursor;
 		}
+		public ListToolsResult() {
+
+		}
 
 		public List<Tool> tools() {
 			return tools;
@@ -1422,6 +1503,10 @@ public final class McpSchema {
 
 		@JsonProperty("definitions")
 		Map<String, Object> definitions;
+
+		public JsonSchema() {
+
+		}
 
 		public JsonSchema(String type, Map<String, Object> properties, List<String> required,
 				Boolean additionalProperties, Map<String, Object> defs, Map<String, Object> definitions) {
@@ -1492,6 +1577,9 @@ public final class McpSchema {
 		public Tool(String name, String description, String schema) {
 			this(name, description, parseSchema(schema));
 		}
+		public Tool() {
+
+		}
 
 		public String name() {
 			return name;
@@ -1539,6 +1627,9 @@ public final class McpSchema {
 		public CallToolRequest(String name, String jsonArguments) {
 			this(name, parseJsonArguments(jsonArguments));
 		}
+		public CallToolRequest() {
+
+		}
 
 		private static Map<String, Object> parseJsonArguments(String jsonArguments) {
 			try {
@@ -1579,6 +1670,9 @@ public final class McpSchema {
 		public CallToolResult(List<Content> content, Boolean isError) {
 			this.content = content;
 			this.isError = isError;
+		}
+		public CallToolResult() {
+
 		}
 
 		public List<Content> content() {
@@ -1714,6 +1808,9 @@ public final class McpSchema {
 			this.speedPriority = speedPriority;
 			this.intelligencePriority = intelligencePriority;
 		}
+		public ModelPreferences() {
+
+		}
 
 		public List<ModelHint> hints() {
 			return hints;
@@ -1791,6 +1888,9 @@ public final class McpSchema {
 		public ModelHint(String name) {
 			this.name = name;
 		}
+		public ModelHint() {
+
+		}
 
 		public String name() {
 			return name;
@@ -1815,6 +1915,9 @@ public final class McpSchema {
 		public SamplingMessage(Role role, Content content) {
 			this.role = role;
 			this.content = content;
+		}
+		public SamplingMessage() {
+
 		}
 
 		public Role role() {
@@ -1867,6 +1970,9 @@ public final class McpSchema {
 			this.maxTokens = maxTokens;
 			this.stopSequences = stopSequences;
 			this.metadata = metadata;
+		}
+		public CreateMessageRequest() {
+
 		}
 
 		public List<SamplingMessage> messages() {
@@ -2003,6 +2109,9 @@ public final class McpSchema {
 			this.model = model;
 			this.stopReason = stopReason;
 		}
+		public CreateMessageResult() {
+
+		}
 
 		public Role role() {
 			return role;
@@ -2089,6 +2198,9 @@ public final class McpSchema {
 		public PaginatedRequest(String cursor) {
 			this.cursor = cursor;
 		}
+		public PaginatedRequest() {
+
+		}
 
 		public String cursor() {
 			return cursor;
@@ -2105,6 +2217,9 @@ public final class McpSchema {
 
 		public PaginatedResult(String nextCursor) {
 			this.nextCursor = nextCursor;
+		}
+		public PaginatedResult() {
+
 		}
 
 		public String nextCursor() {
@@ -2132,6 +2247,9 @@ public final class McpSchema {
 			this.progressToken = progressToken;
 			this.progress = progress;
 			this.total = total;
+		}
+		public ProgressNotification() {
+
 		}
 
 		public String progressToken() {
@@ -2172,6 +2290,9 @@ public final class McpSchema {
 			this.level = level;
 			this.logger = logger;
 			this.data = data;
+		}
+		public LoggingMessageNotification() {
+
 		}
 
 		public LoggingLevel level() {
@@ -2255,6 +2376,9 @@ public final class McpSchema {
 		public SetLevelRequest(LoggingLevel level) {
 			this.level = level;
 		}
+		public SetLevelRequest() {
+
+		}
 
 		public LoggingLevel level() {
 			return level;
@@ -2290,6 +2414,9 @@ public final class McpSchema {
 
 		public PromptReference(String name) {
 			this("ref/prompt", name);
+		}
+		public PromptReference() {
+
 		}
 
 		public String name() {
@@ -2327,6 +2454,10 @@ public final class McpSchema {
 			this("ref/resource", uri);
 		}
 
+		public ResourceReference() {
+
+		}
+
 		public String uri() {
 			return uri;
 		}
@@ -2355,6 +2486,9 @@ public final class McpSchema {
 		public CompleteRequest(McpSchema.CompleteReference ref, CompleteArgument argument) {
 			this.ref = ref;
 			this.argument = argument;
+		}
+		public CompleteRequest() {
+
 		}
 
 		public McpSchema.CompleteReference ref() {
@@ -2399,6 +2533,9 @@ public final class McpSchema {
 
 		public CompleteResult(CompleteCompletion completion) {
 			this.completion = completion;
+		}
+		public CompleteResult() {
+
 		}
 
 		public CompleteCompletion completion() {
@@ -2480,6 +2617,9 @@ public final class McpSchema {
 			this.priority = priority;
 			this.text = text;
 		}
+		public TextContent() {
+
+		}
 
 		public TextContent(String content) {
 			this(null, null, content);
@@ -2521,6 +2661,9 @@ public final class McpSchema {
 			this.data = data;
 			this.mimeType = mimeType;
 		}
+		public ImageContent() {
+
+		}
 
 		public List<Role> audience() {
 			return audience;
@@ -2557,6 +2700,9 @@ public final class McpSchema {
 			this.audience = audience;
 			this.priority = priority;
 			this.resource = resource;
+		}
+		public EmbeddedResource() {
+
 		}
 
 		public List<Role> audience() {
@@ -2599,6 +2745,9 @@ public final class McpSchema {
 			this.uri = uri;
 			this.name = name;
 		}
+		public Root() {
+
+		}
 
 		public String uri() {
 			return uri;
@@ -2622,7 +2771,9 @@ public final class McpSchema {
 
 		@JsonProperty("roots")
 		List<Root> roots;
+        public ListRootsResult() {
 
+        }
 		public ListRootsResult(List<Root> roots) {
 			this.roots = roots;
 		}
