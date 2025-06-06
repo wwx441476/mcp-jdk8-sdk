@@ -94,7 +94,7 @@
 		<javax.servlet.version>4.0.1</javax.servlet.version>
 		<awaitility.version>4.2.0</awaitility.version>
 		<json-unit-assertj.version>4.1.0</json-unit-assertj.version>
-
+		<lombok.version>1.18.26</lombok.version>
 	</properties>
 
 	<modules>

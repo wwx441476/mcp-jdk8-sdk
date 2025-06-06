@@ -21,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.modelcontextprotocol.util.Assert;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -253,6 +255,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class JSONRPCNotification implements JSONRPCMessage {
 
 		@JsonProperty("jsonrpc")
@@ -290,6 +294,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class JSONRPCResponse implements JSONRPCMessage {
 
 		@JsonProperty("jsonrpc")
@@ -333,6 +339,8 @@ public final class McpSchema {
 
 		@JsonInclude(JsonInclude.Include.NON_ABSENT)
 		@JsonIgnoreProperties(ignoreUnknown = true)
+		@ToString
+		@EqualsAndHashCode
 		public static class JSONRPCError {
 
 			@JsonProperty("code")
@@ -373,6 +381,8 @@ public final class McpSchema {
 	// ---------------------------
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class InitializeRequest implements Request {
 
 		@JsonProperty("protocolVersion")
@@ -408,6 +418,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class InitializeResult {
 
 		@JsonProperty("protocolVersion")
@@ -463,6 +475,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ClientCapabilities {
 
 		@JsonProperty("experimental")
@@ -504,6 +518,8 @@ public final class McpSchema {
 		 */
 		@JsonInclude(JsonInclude.Include.NON_ABSENT)
 		@JsonIgnoreProperties(ignoreUnknown = true)
+		@ToString
+		@EqualsAndHashCode
 		public static class RootCapabilities {
 
 			@JsonProperty("listChanged")
@@ -530,6 +546,8 @@ public final class McpSchema {
 		 * from MCP servers in their prompts.
 		 */
 		@JsonInclude(JsonInclude.Include.NON_ABSENT)
+		@ToString
+		@EqualsAndHashCode
 		public static class Sampling {
 
 			public Sampling() {
@@ -574,6 +592,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ServerCapabilities {
 
 		@JsonProperty("completions")
@@ -633,6 +653,8 @@ public final class McpSchema {
 		}
 
 		@JsonInclude(JsonInclude.Include.NON_ABSENT)
+		@ToString
+		@EqualsAndHashCode
 		public static class CompletionCapabilities {
 
 			public CompletionCapabilities() {
@@ -641,6 +663,8 @@ public final class McpSchema {
 		}
 
 		@JsonInclude(JsonInclude.Include.NON_ABSENT)
+		@ToString
+		@EqualsAndHashCode
 		public static class LoggingCapabilities {
 
 			public LoggingCapabilities() {
@@ -649,6 +673,8 @@ public final class McpSchema {
 		}
 
 		@JsonInclude(JsonInclude.Include.NON_ABSENT)
+		@ToString
+		@EqualsAndHashCode
 		public static class PromptCapabilities {
 
 			@JsonProperty("listChanged")
@@ -658,6 +684,9 @@ public final class McpSchema {
 				this.listChanged = listChanged;
 			}
 
+			public PromptCapabilities() {
+
+			}
 			public Boolean listChanged() {
 				return listChanged;
 			}
@@ -665,6 +694,8 @@ public final class McpSchema {
 		}
 
 		@JsonInclude(JsonInclude.Include.NON_ABSENT)
+		@ToString
+		@EqualsAndHashCode
 		public static class ResourceCapabilities {
 
 			@JsonProperty("subscribe")
@@ -676,6 +707,9 @@ public final class McpSchema {
 			public ResourceCapabilities(Boolean subscribe, Boolean listChanged) {
 				this.subscribe = subscribe;
 				this.listChanged = listChanged;
+			}
+			public ResourceCapabilities() {
+
 			}
 
 			public Boolean subscribe() {
@@ -689,6 +723,8 @@ public final class McpSchema {
 		}
 
 		@JsonInclude(JsonInclude.Include.NON_ABSENT)
+		@ToString
+		@EqualsAndHashCode
 		public static class ToolCapabilities {
 
 			@JsonProperty("listChanged")
@@ -696,6 +732,9 @@ public final class McpSchema {
 
 			public ToolCapabilities(Boolean listChanged) {
 				this.listChanged = listChanged;
+			}
+			public ToolCapabilities() {
+
 			}
 
 			public Boolean listChanged() {
@@ -762,6 +801,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class Implementation {
 
 		@JsonProperty("name")
@@ -823,6 +864,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class Annotations {
 
 		@JsonProperty("audience")
@@ -860,6 +903,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class Resource implements Annotated {
 
 		@JsonProperty("uri")
@@ -925,6 +970,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ResourceTemplate implements Annotated {
 
 		@JsonProperty("uriTemplate")
@@ -979,6 +1026,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ListResourcesResult {
 
 		@JsonProperty("resources")
@@ -1007,6 +1056,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ListResourceTemplatesResult {
 
 		@JsonProperty("resourceTemplates")
@@ -1035,6 +1086,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ReadResourceRequest {
 
 		@JsonProperty("uri")
@@ -1055,6 +1108,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ReadResourceResult {
 
 		@JsonProperty("contents")
@@ -1080,6 +1135,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class SubscribeRequest {
 
 		@JsonProperty("uri")
@@ -1100,6 +1157,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class UnsubscribeRequest {
 
 		@JsonProperty("uri")
@@ -1147,6 +1206,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class TextResourceContents implements ResourceContents {
 
 		@JsonProperty("uri")
@@ -1191,6 +1252,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class BlobResourceContents implements ResourceContents {
 
 		@JsonProperty("uri")
@@ -1238,6 +1301,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class Prompt {
 
 		@JsonProperty("name")
@@ -1279,6 +1344,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class PromptArgument {
 
 		@JsonProperty("name")
@@ -1321,6 +1388,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class PromptMessage {
 
 		@JsonProperty("role")
@@ -1354,6 +1423,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ListPromptsResult {
 
 		@JsonProperty("prompts")
@@ -1386,6 +1457,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class GetPromptRequest implements Request {
 
 		@JsonProperty("name")
@@ -1419,6 +1492,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class GetPromptResult {
 
 		@JsonProperty("description")
@@ -1456,6 +1531,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ListToolsResult {
 
 		@JsonProperty("tools")
@@ -1484,6 +1561,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class JsonSchema {
 
 		@JsonProperty("type")
@@ -1557,6 +1636,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class Tool {
 
 		@JsonProperty("name")
@@ -1611,6 +1692,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class CallToolRequest implements Request {
 
 		@JsonProperty("name")
@@ -1659,6 +1742,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class CallToolResult {
 
 		@JsonProperty("content")
@@ -1787,6 +1872,8 @@ public final class McpSchema {
 	// ---------------------------
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ModelPreferences {
 
 		@JsonProperty("hints")
@@ -1880,6 +1967,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ModelHint {
 
 		@JsonProperty("name")
@@ -1904,6 +1993,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class SamplingMessage {
 
 		@JsonProperty("role")
@@ -1933,6 +2024,8 @@ public final class McpSchema {
 	// Sampling and Message Creation
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class CreateMessageRequest implements Request {
 
 		@JsonProperty("messages")
@@ -2089,6 +2182,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class CreateMessageResult {
 
 		@JsonProperty("role")
@@ -2190,6 +2285,8 @@ public final class McpSchema {
 	// ---------------------------
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class PaginatedRequest {
 
 		@JsonProperty("cursor")
@@ -2210,6 +2307,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class PaginatedResult {
 
 		@JsonProperty("nextCursor")
@@ -2232,6 +2331,8 @@ public final class McpSchema {
 	// Progress and Logging
 	// ---------------------------
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ProgressNotification {
 
 		@JsonProperty("progressToken")
@@ -2275,6 +2376,8 @@ public final class McpSchema {
 	 * generated the message. data JSON-serializable logging data.
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class LoggingMessageNotification {
 
 		@JsonProperty("level")
@@ -2368,6 +2471,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class SetLevelRequest {
 
 		@JsonProperty("level")
@@ -2399,6 +2504,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class PromptReference implements McpSchema.CompleteReference {
 
 		@JsonProperty("type")
@@ -2437,6 +2544,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ResourceReference implements McpSchema.CompleteReference {
 
 		@JsonProperty("type")
@@ -2475,6 +2584,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class CompleteRequest implements Request {
 
 		@JsonProperty("ref")
@@ -2499,6 +2610,8 @@ public final class McpSchema {
 			return argument;
 		}
 
+		@ToString
+		@EqualsAndHashCode
 		public static class CompleteArgument {
 
 			@JsonProperty("name")
@@ -2510,6 +2623,9 @@ public final class McpSchema {
 			public CompleteArgument(String name, String value) {
 				this.name = name;
 				this.value = value;
+			}
+			public CompleteArgument() {
+
 			}
 
 			public String name() {
@@ -2526,6 +2642,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class CompleteResult {
 
 		@JsonProperty("completion")
@@ -2542,6 +2660,8 @@ public final class McpSchema {
 			return completion;
 		}
 
+		@ToString
+		@EqualsAndHashCode
 		public static class CompleteCompletion {
 
 			@JsonProperty("values")
@@ -2557,6 +2677,9 @@ public final class McpSchema {
 				this.values = values;
 				this.total = total;
 				this.hasMore = hasMore;
+			}
+			public CompleteCompletion() {
+
 			}
 
 			public List<String> values() {
@@ -2601,6 +2724,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class TextContent implements Content {
 
 		@JsonProperty("audience")
@@ -2641,6 +2766,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ImageContent implements Content {
 
 		@JsonProperty("audience")
@@ -2685,6 +2812,8 @@ public final class McpSchema {
 
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class EmbeddedResource implements Content {
 
 		@JsonProperty("audience")
@@ -2733,6 +2862,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class Root {
 
 		@JsonProperty("uri")
@@ -2767,6 +2898,8 @@ public final class McpSchema {
 	 */
 	@JsonInclude(JsonInclude.Include.NON_ABSENT)
 	@JsonIgnoreProperties(ignoreUnknown = true)
+	@ToString
+	@EqualsAndHashCode
 	public static class ListRootsResult {
 
 		@JsonProperty("roots")
